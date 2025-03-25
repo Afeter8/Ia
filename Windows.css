@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tigo Start - IA Amigable</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
+        #chatbox { width: 90%; max-width: 400px; height: 300px; border: 1px solid #ccc; overflow-y: scroll; padding: 10px; margin: auto; background: white; }
+        #userInput { width: 70%; padding: 5px; }
+        button { padding: 5px 10px; margin-top: 5px; }
+        .bot { color: blue; text-align: left; }
+        .user { color: green; text-align: right; }
+    </style>
+</head>
+<body>
+    <h2>Tigo Start - Tu IA Amigable</h2>
+    <div id="chatbox"></div>
+    <input type="text" id="userInput" placeholder="Escribe un mensaje...">
+    <button onclick="sendMessage()">Enviar</button>
+    <br>
+    <h3>Despertador</h3>
+    <input type="time" id="alarmTime">
+    <button onclick="setAlarm()">Activar Alarma</button>
+    <p id="alarmStatus"></p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            addMessage("bot", "Hola, soy Tigo Start. ¿En qué puedo ayudarte?");
+        });
+
+        function sendMessage() {
+            let inputField = document.getElementById("userInput");
+            let userMessage = inputField.value.trim();
+            if (userMessage === "") return;
+
+            addMessage("user", userMessage);
+            inputField.value = "";
+
+            let botResponse = getTigoResponse(userMessage);
+            setTimeout(() => addMessage("bot", botResponse), 1000);
+        }
+
+        function addMessage(sender, text) {
+            let chatbox = document.getElementById("chatbox");
+            let messageDiv = document.createElement("div");
+            messageDiv.classList.add(sender);
+            messageDiv.textContent = text;
+            chatbox.appendChild(messageDiv);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+
+        function getTigoResponse(input) {
+            let responses = {
+                "hola": "¡Hola! Soy Tigo Start, tu asistente amigable con un toque de humor.",
+                "¿cómo estás?": "Estoy al 100%, listo para ayudarte. ¿Y tú?",
+                "cuéntame un chiste": "¿Por qué el WiFi rompió con su novia? Porque sentía que la conexión se perdía.",
+                "adiós": "¡Hasta luego! No olvides recargar energías con una siesta.",
+                "qué hora es": "Déjame ver... ¡Es hora de ser feliz! Pero en serio, son las " + new Date().toLocaleTimeString(),
+                "cómo está el clima": "No tengo acceso a datos en vivo aún, pero si ves nubes, llévate un paraguas."
+            };
+            return responses[input.toLowerCase()] || "No entiendo eso, pero puedo aprender. ¡Explícame más!";
+        }
+
+        function setAlarm() {
+            let alarmTime = document.getElementById("alarmTime").value;
+            if (!alarmTime) {
+                document.getElementById("alarmStatus").textContent = "Por favor, ingresa una hora válida.";
+                return;
+            }
+            
+            let now = new Date();
+            let alarm = new Date(now.toDateString() + " " + alarmTime);
+            let timeDiff = alarm - now;
+
+            if (timeDiff < 0) timeDiff += 86400000; // Si es pasado, activar para el siguiente día
+
+            setTimeout(() => {
+                alert("¡Es hora de despertar! 🌞");
+                document.getElementById("alarmStatus").textContent = "Alarma activada a las " + alarmTime;
+            }, timeDiff);
+        }
+    </script>
+</body>
+</html>
