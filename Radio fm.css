@@ -1,0 +1,46 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/4.0.3/web3.min.js"></script>
+<script>
+    const contractAddress = "0xTU_CONTRATO_ETHEREUM";
+    const contractABI = [
+        { "inputs": [], "name": "getLogCount", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "stateMutability": "view", "type": "function" },
+        { "inputs": [{ "internalType": "uint256", "name": "index", "type": "uint256" }], "name": "logs", "outputs": [
+            { "internalType": "address", "name": "executor", "type": "address" },
+            { "internalType": "string", "name": "role", "type": "string" },
+            { "internalType": "string", "name": "codeHash", "type": "string" },
+            { "internalType": "uint256", "name": "timestamp", "type": "uint256" }
+        ], "stateMutability": "view", "type": "function" }
+    ];
+
+    async function generateAuditReport() {
+        if (window.ethereum) {
+            const web3 = new Web3(window.ethereum);
+            const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+            const logCount = await contract.methods.getLogCount().call();
+            let logs = [];
+
+            for (let i = 0; i < logCount; i++) {
+                const log = await contract.methods.logs(i).call();
+                logs.push({
+                    executor: log.executor,
+                    role: log.role,
+                    codeHash: log.codeHash,
+                    timestamp: new Date(log.timestamp * 1000).toISOString()
+                });
+            }
+
+            const blob = new Blob([JSON.stringify(logs, null, 2)], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "TigoStart_Audit_Report.json";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            alert("✅ Reporte descargado.");
+        }
+    }
+</script>
+
+<button onclick="generateAuditReport()">📥 Descargar Reporte de Auditoría</button>
