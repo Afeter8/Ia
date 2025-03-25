@@ -1,0 +1,22 @@
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+# Respuestas simples (luego se conecta con un modelo de IA)
+def tigo_response(message):
+    respuestas = {
+        "hola": "¡Hola! Soy Tigo, tu IA descentralizada.",
+        "adiós": "¡Hasta luego!",
+        "ethereum": "Ethereum es una blockchain descentralizada con contratos inteligentes."
+    }
+    return respuestas.get(message.lower(), "Aún estoy aprendiendo. ¿Puedes explicarme más?")
+
+@app.route("/chat", methods=["POST"])
+def chat():
+    data = request.json
+    user_message = data.get("message", "")
+    bot_reply = tigo_response(user_message)
+    return jsonify({"reply": bot_reply})
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
