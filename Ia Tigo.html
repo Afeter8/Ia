@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tigo - IA Descentralizada</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #chatbox { width: 90%; max-width: 400px; height: 400px; border: 1px solid #ccc; overflow-y: scroll; padding: 10px; margin: auto; }
+        #userInput { width: 70%; padding: 5px; }
+        button { padding: 5px 10px; }
+        .bot { color: blue; text-align: left; }
+        .user { color: green; text-align: right; }
+    </style>
+</head>
+<body>
+    <h2>Tigo - IA Descentralizada</h2>
+    <div id="chatbox"></div>
+    <input type="text" id="userInput" placeholder="Escribe un mensaje...">
+    <button onclick="sendMessage()">Enviar</button>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            addMessage("bot", "Hola, soy Tigo. ¿En qué puedo ayudarte?");
+        });
+
+        function sendMessage() {
+            let inputField = document.getElementById("userInput");
+            let userMessage = inputField.value.trim();
+            if (userMessage === "") return;
+
+            addMessage("user", userMessage);
+            inputField.value = "";
+
+            fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: userMessage })
+            })
+            .then(response => response.json())
+            .then(data => addMessage("bot", data.reply))
+            .catch(() => addMessage("bot", "Error en el servidor."));
+        }
+
+        function addMessage(sender, text) {
+            let chatbox = document.getElementById("chatbox");
+            let messageDiv = document.createElement("div");
+            messageDiv.classList.add(sender);
+            messageDiv.textContent = text;
+            chatbox.appendChild(messageDiv);
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
+    </script>
+</body>
+</html>
