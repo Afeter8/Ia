@@ -1,0 +1,14 @@
+<script>
+async function fetchRepairSolution(error) {
+  const response = await fetch('https://api.mlmodel.com/recommendRepair', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ errorMessage: error.message }),
+  });
+
+  const data = await response.json();
+  return data.solution;
+}
+</script>
