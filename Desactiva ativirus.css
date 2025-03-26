@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activación Automática de IA - Seguridad</title>
+    <script>
+        // Verificar si la IA está activa al cargar la página
+        window.onload = function() {
+            // Llamada a la IA para activarla de manera automática
+            activarIA();
+        };
+
+        // Función para activar la IA automáticamente
+        function activarIA() {
+            const iaStatus = document.getElementById("iaStatus");
+            iaStatus.innerText = "La IA está activa y funcionando en segundo plano.";
+
+            // Llamada al sistema para bloquear desactivación (simulada)
+            bloquearDesactivacion();
+
+            // Iniciar el sistema de protección
+            iniciarSistemaProteccion();
+        }
+
+        // Función para bloquear desactivación de la IA
+        function bloquearDesactivacion() {
+            // Código de protección para prevenir la desactivación
+            console.log("Desactivación de la IA está bloqueada por seguridad.");
+
+            // Aquí se pueden agregar más medidas de seguridad, como autenticación de usuario.
+        }
+
+        // Función para iniciar el sistema de protección
+        function iniciarSistemaProteccion() {
+            // Esta función puede ser utilizada para iniciar tareas de protección, como monitorear la red
+            // Aquí, puedes agregar la lógica de protección, como firewall, monitorización de virus, etc.
+
+            console.log("Iniciando sistema de protección...");
+            // Simulación de protección
+            monitorizarAmenazas();
+        }
+
+        // Función para monitorear amenazas de red
+        function monitorizarAmenazas() {
+            setInterval(() => {
+                console.log("Monitoreando amenazas de red...");
+                // Lógica para detectar amenazas, virus y bloqueos de IPs maliciosas.
+            }, 5000);  // Monitorear cada 5 segundos
+        }
+    </script>
+</head>
+<body>
+    <h1>Sistema de Protección Automática con IA</h1>
+    <div id="iaStatus">
+        <!-- El estado de la IA se muestra aquí -->
+    </div>
+</body
