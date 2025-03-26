@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tigo Start IA - Seguridad Avanzada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #2d2d2d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .content {
+            padding: 20px;
+        }
+        .section-title {
+            font-size: 1.5em;
+            color: #2d2d2d;
+        }
+        footer {
+            background-color: #2d2d2d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Tigo Start IA - Sistema de Seguridad Avanzada</h1>
+    <p>Protección Total para tus dispositivos, Blockchain y Criptomonedas</p>
+</header>
+
+<nav>
+    <a href="#home">Inicio</a>
+    <a href="#features">Características</a>
+    <a href="#download">Descargar</a>
+    <a href="#support">Soporte</a>
+</nav>
+
+<div class="content">
+    <section id="home">
+        <h2 class="section-title">Bienvenido a Tigo Start IA</h2>
+        <p>En Tigo Start IA ofrecemos un sistema de seguridad integral con protección para tus dispositivos, aplicaciones, y transacciones de criptomonedas. Gracias a nuestras tecnologías de Blockchain y Antivirus global, aseguramos que tu experiencia en línea esté completamente protegida.</p>
+    </section>
+
+    <section id="features">
+        <h2 class="section-title">Características Principales</h2>
+        <ul>
+            <li><strong>Antivirus Global:</strong> Integración con los principales antivirus comerciales y open-source.</li>
+            <li><strong>Blockchain Segura:</strong> Protección avanzada en redes blockchain como Ethereum, Bitcoin, y más.</li>
+            <li><strong>Protección de Criptomonedas:</strong> Monitoreo en tiempo real de transacciones y protección contra fraudes.</li>
+            <li><strong>VPN Global:</strong> Conexiones seguras y privadas con servidores VPN distribuidos mundialmente.</li>
+            <li><strong>Interacción con IA:</strong> Sistema autónomo basado en IA que gestiona la seguridad y la privacidad de manera inteligente.</li>
+            <li><strong>Protección de Android:</strong> Seguridad avanzada para tus dispositivos móviles.</li>
+        </ul>
+    </section>
+
+    <section id="download">
+        <h2 class="section-title">Descargar Tigo Start IA</h2>
+        <p>Descarga e instala Tigo Start IA para proteger tus dispositivos, aplicaciones y criptomonedas. Disponible para Android y Windows.</p>
+        <button onclick="window.location.href='https://www.tigostart.com/download'">Descargar para Android</button>
+        <button onclick="window.location.href='https://www.tigostart.com/download'">Descargar para Windows</button>
+    </section>
+
+    <section id="support">
+        <h2 class="section-title">Soporte</h2>
+        <p>Si necesitas ayuda, puedes contactar con nuestro equipo de soporte en cualquier momento. Estamos aquí para ayudarte a mantener tu seguridad en línea.</p>
+        <button onclick="window.location.href='https://www.tigostart.com/support'">Contactar Soporte</button>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2025 Tigo Start IA. Todos los derechos reservados.</p>
+</footer>
+
+</body>
+</html>
