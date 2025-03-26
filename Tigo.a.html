@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Protección Automática de Red y Antivirus Telmex</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #2d2d2d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        .content {
+            padding: 20px;
+        }
+        .section-title {
+            font-size: 1.5em;
+            color: #2d2d2d;
+        }
+        .status {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #2d2d2d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Protección Automática de Red Telmex y Antivirus</h1>
+    <p>Protección en tiempo real contra amenazas, virus y robo de información. Activación automática del antivirus.</p>
+</header>
+
+<nav>
+    <a href="#home">Inicio</a>
+    <a href="#features">Características</a>
+    <a href="#status">Estado de Protección</a>
+    <a href="#support">Soporte</a>
+</nav>
+
+<div class="content">
+    <section id="home">
+        <h2 class="section-title">Bienvenido</h2>
+        <p>La protección de tu red Telmex está activa y el antivirus se ejecutará automáticamente sin intervención humana para garantizar la seguridad de tus datos.</p>
+    </section>
+
+    <section id="features">
+        <h2 class="section-title">Características</h2>
+        <ul>
+            <li><strong>Activación Automática:</strong> El antivirus se activa sin intervención humana.</li>
+            <li><strong>Protección en Segundo Plano:</strong> Monitoreo constante de tu red Telmex.</li>
+            <li><strong>Detección de Amenazas:</strong> Identificación y eliminación de virus y amenazas en tiempo real.</li>
+            <li><strong>Descentralización del Modem:</strong> Gestión autónoma del modem Telmex para garantizar seguridad.</li>
+            <li><strong>Notificaciones en Tiempo Real:</strong> Alertas si se detecta actividad sospechosa.</li>
+        </ul>
+    </section>
+
+    <section id="status">
+        <h2 class="section-title">Estado de Protección</h2>
+        <div class="status">
+            <p>Protección activa: <strong>En funcionamiento</strong></p>
+            <p>Red Telmex protegida: <strong>Sí</strong></p>
+            <p>Antivirus activo: <strong>Sí</strong></p>
+            <p>Último escaneo: <strong>Hace 5 minutos</strong></p>
+        </div>
+    </section>
+
+    <section id="support">
+        <h2 class="section-title">Soporte</h2>
+        <p>Si necesitas ayuda o tienes preguntas, contacta con nuestro equipo de soporte.</p>
+        <button onclick="window.location.href='https://www.tigostart.com/support'">Contactar Soporte</button>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2025 Tigo Start IA. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    // Este script simula la activación automática del antivirus y la protección de red
+    document.addEventListener("DOMContentLoaded", function() {
+        setInterval(function() {
+            console.log("Activando antivirus y protegiendo red Telmex...");
+            // Aquí puedes llamar a las funciones de backend para activar el antivirus y la protección de red
+            fetch("/api/activar-proteccion", { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Protección activada:", data);
+                    // Aquí puedes actualizar el estado de la interfaz con los resultados del backend
+                })
+                .catch(error => console.error("Error al activar protección:", error));
+        }, 300000); // Cada 5 minutos, activa el antivirus y verifica la protección
+    });
+</script>
+
+</body>
+</html>
