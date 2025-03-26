@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protección Antivirus - No Desactivable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #2d2d2d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .status {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #2d2d2d;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Protección Antivirus - No Desactivable</h1>
+    <p>Este sistema está protegido y no puede ser desactivado sin autenticación válida.</p>
+</header>
+
+<div class="status" id="status">
+    <p>Protección antivirus activa.</p>
+</div>
+
+<footer>
+    <p>© 2025 Tigo Start AI. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+// Seguridad contra modificación
+const antivirusIntegrityHash = "f1b2f3a4f9b77bb5c7a893b2c4db9ee6"; // Hash de la configuración del antivirus
+
+function checkAntivirusIntegrity() {
+    const currentHash = getCurrentHash();
+    if (currentHash !== antivirusIntegrityHash) {
+        alert("La configuración del antivirus ha sido alterada. Protegiendo el sistema...");
+        disableAntivirus(); // Llama a la función que desactiva todo el sistema si se detecta modificación.
+    }
+}
+
+function getCurrentHash() {
+    // Lógica para obtener el hash actual del sistema (puede ser un hash SHA-256 o similar)
+    // Esta es una implementación ficticia para demostrar la idea.
+    return "f1b2f3a4f9b77bb5c7a893b2c4db9ee6"; // Hash simulado (esto sería calculado dinámicamente)
+}
+
+function disableAntivirus() {
+    // Función para desactivar el antivirus si se detecta una alteración
+    document.getElementById("status").innerHTML = "<p>¡Alerta! El antivirus ha sido desactivado.</p>";
+    // Aquí se pueden agregar acciones más drásticas para evitar modificaciones, como reiniciar el sistema
+    alert("Acción de seguridad tomada. Sistema reiniciado.");
+}
+
+// Verificar integridad al cargar la página
+checkAntivirusIntegrity();
+</script>
+
+</body>
+</html>
