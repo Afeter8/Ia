@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Tigo IA - Seguridad y Protección</title>
+    <style>
+        /* Estilo básico para la interfaz */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        .container {
+            padding: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .extension-container {
+            margin-top: 20px;
+        }
+        .extension {
+            background-color: #ddd;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .status {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Star Tigo IA - Protección Automática</h1>
+        <p>Gestión de seguridad y extensiones para programas de código</p>
+    </header>
+
+    <div class="container">
+        <!-- Sección para Protección Automática -->
+        <div class="section">
+            <h2>Protección Automática</h2>
+            <button class="button" onclick="activarProteccion()">Activar Protección Automática</button>
+            <p class="status" id="proteccion-status">Estado de protección: Inactivo</p>
+        </div>
+
+        <!-- Sección para Crear Código de Ética y Seguridad -->
+        <div class="section">
+            <h2>Código de Ética y Seguridad</h2>
+            <textarea id="codigo-etica" rows="4" cols="50" placeholder="Escribe el código de ética y seguridad aquí..."></textarea>
+            <button class="button" onclick="guardarCodigo()">Guardar Código</button>
+            <p class="status" id="codigo-status">Código de ética guardado: No</p>
+        </div>
+
+        <!-- Sección para Agregar Extensiones -->
+        <div class="section">
+            <h2>Extensiones de Seguridad</h2>
+            <button class="button" onclick="agregarExtension()">Agregar Extensión de Seguridad</button>
+            <div class="extension-container" id="extension-container"></div>
+        </div>
+
+        <!-- Sección para Monitoreo de Red y Seguridad -->
+        <div class="section">
+            <h2>Monitoreo de Red</h2>
+            <button class="button" onclick="iniciarMonitoreo()">Iniciar Monitoreo de Red</button>
+            <p class="status" id="monitoreo-status">Monitoreo de red: Inactivo</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Star Tigo IA - Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Activar protección automática
+        function activarProteccion() {
+            document.getElementById("proteccion-status").innerText = "Estado de protección: Activo";
+            // Lógica para protección en segundo plano aquí (simulada)
+            console.log("Protección automática activada.");
+        }
+
+        // Guardar el código de ética y seguridad
+        function guardarCodigo() {
+            const codigo = document.getElementById("codigo-etica").value;
+            if (codigo) {
+                localStorage.setItem('codigoEtica', codigo);
+                document.getElementById("codigo-status").innerText = "Código de ética guardado: Sí";
+                console.log("Código de ética guardado:", codigo);
+            } else {
+                document.getElementById("codigo-status").innerText = "Código de ética guardado: No";
+            }
+        }
+
+        // Agregar una nueva extensión de seguridad
+        function agregarExtension() {
+            const extensionContainer = document.getElementById("extension-container");
+            const extension = document.createElement("div");
+            extension.classList.add("extension");
+
+            const extensionTitle = document.createElement("h3");
+            extensionTitle.innerText = "Extensión de Seguridad " + (extensionContainer.children.length + 1);
+            extension.appendChild(extensionTitle);
+
+            const extensionStatus = document.createElement("p");
+            extensionStatus.classList.add("status");
+            extensionStatus.innerText = "Estado: Inactivo";
+            extension.appendChild(extensionStatus);
+
+            const extensionButton = document.createElement("button");
+            extensionButton.classList.add("button");
+            extensionButton.innerText = "Activar Extensión";
+            extensionButton.onclick = function() {
+                extensionStatus.innerText = "Estado: Activo";
+                console.log("Extensión activada.");
+            };
+            extension.appendChild(extensionButton);
+
+            extensionContainer.appendChild(extension);
+        }
+
+        // Iniciar monitoreo de red
+        function iniciarMonitoreo() {
+            document.getElementById("monitoreo-status").innerText = "Monitoreo de red: Activo";
+            // Lógica para monitoreo de red (simulada)
+            console.log("Monitoreo de red iniciado.");
+        }
+    </script>
+</body>
+</html>
