@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor de Temperatura - IA</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
+        #status { font-size: 20px; padding: 20px; }
+        #alerta { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Monitor de Temperatura y Rendimiento</h1>
+    <p id="status">Cargando datos...</p>
+    <p id="alerta"></p>
+
+    <script>
+        function obtenerTemperatura() {
+            // Simulación de temperatura del CPU
+            let temp = Math.random() * (50 - 30) + 30; 
