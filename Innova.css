@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Tigo Antivirus - Protección Total</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+        }
+        .section {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .alert {
+            color: red;
+            font-weight: bold;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Star Tigo Antivirus - Protección de Red en Tiempo Real</h1>
+    <p>Protección avanzada utilizando IA para toda la red Star Tigo</p>
+</div>
+
+<div class="container">
+    <div class="section" id="status-section">
+        <h2>Estado de Protección</h2>
+        <p>Estado actual: <span id="protection-status">Cargando...</span></p>
+    </div>
+
+    <div class="section" id="analysis-section">
+        <h2>Analizar Archivos</h2>
+        <input type="file" id="file-input" />
+        <button onclick="analyzeFile()">Analizar Archivo</button>
+        <p id="analysis-result"></p>
+    </div>
+
+    <div class="section" id="ai-integration">
+        <h2>IA de Protección</h2>
+        <p>Integración de IA para mejorar la seguridad.</p>
+        <button onclick="startAIProtection()">Iniciar Protección con IA</button>
+        <div id="ai-result"></div>
+    </div>
+</div>
+
+<script>
+// Función para simular el estado de protección
+function updateProtectionStatus(status) {
+    document.getElementById('protection-status').textContent = status;
+}
+
+// Simulación de análisis de archivo
+async function analyzeFile() {
+    const fileInput = document.getElementById('file-input');
+    const file = fileInput.files[0];
+    if (!file) {
+        alert('Por favor selecciona un archivo');
+        return;
+    }
+
+    // Aquí va la lógica para analizar el archivo (verificar su hash, consultar la base de datos)
+    // Para efectos de este ejemplo, simplemente se simula una respuesta
+    document.getElementById('analysis-result').textContent = 'Analizando archivo...';
+    setTimeout(() => {
+        // Simula una respuesta de la base de datos
+        const isSafe = Math.random() > 0.5;  // Aleatorio entre seguro o infectado
+        if (isSafe) {
+            document.getElementById('analysis-result').textContent = '✅ El archivo es seguro.';
+            document.getElementById('analysis-result').classList.add('success');
+        } else {
+            document.getElementById('analysis-result').textContent = '⚠️ El archivo está infectado.';
+            document.getElementById('analysis-result').classList.add('alert');
+        }
+    }, 2000);
+}
+
+// Función para simular la integración de IA en la protección
+async function startAIProtection() {
+    document.getElementById('ai-result').textContent = 'Iniciando protección con IA...';
+    setTimeout(() => {
+        // Simula el análisis y mejora de seguridad con IA
+        document.getElementById('ai-result').textContent = 'IA activada: Protección mejorada.';
+        updateProtectionStatus("Protección avanzada con IA activa.");
+    }, 3000);
+}
+
+// Función para cambiar el estado de la protección
+updateProtectionStatus("Protección en tiempo real activa.");
+</script>
+
+</body>
+</html>
