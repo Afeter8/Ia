@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tigo Antivirus - Protección Total</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #results {
+            margin-top: 20px;
+        }
+        .alert {
+            color: red;
+            font-weight: bold;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Tigo Antivirus - Protección en Tiempo Real</h1>
+    <p>Tu escudo de seguridad para proteger tu información y red.</p>
+</header>
+
+<div class="container">
+    <h2>Escanear Sistema</h2>
+    <p>Haz clic en el botón para iniciar un escaneo de tu sistema en busca de amenazas.</p>
+    <button onclick="startScan()">Iniciar Escaneo</button>
+
+    <div id="results"></div>
+</div>
+
+<!-- Blockchain Integration -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.2/web3.min.js"></script>
+
+<script>
+    // Configuración de Web3 para conectar con la blockchain (Ethereum)
+    const web3 = new Web3("https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID");
+
+    // Función para mostrar información de la blockchain
+    async function checkBlockchain() {
+        const accounts = await web3.eth.getAccounts();
+        console.log("Cuentas disponibles en Ethereum:", accounts);
+    }
+
+    // Función de escaneo del sistema (simulada)
+    function startScan() {
+        document.getElementById('results').innerHTML = "<p>Escaneando el sistema...</p>";
+
+        // Simulación de escaneo antivirus
+        setTimeout(() => {
+            const isVirusDetected = Math.random() > 0.5; // Simulación de detección de virus
+            if (isVirusDetected) {
+                document.getElementById('results').innerHTML = "<p class='alert'>¡Virus detectado! Se ha bloqueado el acceso.</p>";
+            } else {
+                document.getElementById('results').innerHTML = "<p class='success'>Sistema limpio, sin amenazas detectadas.</p>";
+            }
+
+            // Llamada a la función de Blockchain para interactuar con contratos inteligentes o verificar transacciones.
+            checkBlockchain();
+        }, 3000);
+    }
+</script>
+
+</body>
+</html>
