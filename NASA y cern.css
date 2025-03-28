@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tigo Start - CERN & NASA</title>
+    <script>
+        async function obtenerDatosCERN() {
+            try {
+                let response = await fetch('https://opendata.cern.ch/api/1.0/records');
+                let data = await response.json();
+                console.log("Datos del CERN:", data);
+                document.getElementById("cern-data").innerText = JSON.stringify(data, null, 2);
+            } catch (error) {
+                console.error("Error obteniendo datos del CERN", error);
+            }
+        }
+
+        async function obtenerDatosNASA() {
+            try {
+                let response = await fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY');
+                let data = await response.json();
+                console.log("Datos de la NASA:", data);
+                document.getElementById("nasa-data").innerText = JSON.stringify(data, null, 2);
+            } catch (error) {
+                console.error("Error obteniendo datos de la NASA", error);
+            }
+        }
+
+        function iniciarSistema() {
+            obtenerDatosCERN();
+            obtenerDatosNASA();
+        }
+    </script>
+</head>
+<body onload="iniciarSistema()">
+    <h1>Tigo Start - Integración CERN & NASA</h1>
+    <h2>Datos del CERN:</h2>
+    <pre id="cern-data">Cargando...</pre>
+    <h2>Datos de la NASA:</h2>
+    <pre id="nasa-data">Cargando...</pre>
+</body>
+</html>
