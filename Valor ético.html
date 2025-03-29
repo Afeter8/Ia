@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protección del Sistema</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            text-align: center;
+            padding: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #1e1e1e;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        .status {
+            font-size: 18px;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .secure {
+            background-color: #008000;
+            color: white;
+        }
+        .alert {
+            background-color: #ff0000;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Protección del Sistema Activa</h1>
+        <p>Este sistema garantiza la seguridad y protección contra ataques cibernéticos.</p>
+        <div id="securityStatus" class="status secure">Sistema Seguro</div>
+    </div>
+    <script>
+        function checkSecurity() {
+            // Simulación de monitoreo en tiempo real
+            setTimeout(() => {
+                let status = Math.random() > 0.8 ? "alert" : "secure";
+                let statusText = status === "alert" ? "Amenaza Detectada" : "Sistema Seguro";
+                document.getElementById("securityStatus").className = "status " + status;
+                document.getElementById("securityStatus").innerText = statusText;
+            }, 3000);
+        }
+        setInterval(checkSecurity, 5000);
+    </script>
+</body>
+</html>
