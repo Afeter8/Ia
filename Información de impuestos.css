@@ -1,0 +1,67 @@
+// Smart Contract para el sistema contable descentralizado de Star Tigo
+
+pragma solidity ^0.8.0;
+
+contract StarTigoContabilidad {
+    struct Empresa {
+        string nombre;
+        string rfc;
+        string pais;
+        string sector;
+        uint256 fechaRegistro;
+    }
+
+    struct Transaccion {
+        uint256 empresaId;
+        uint256 fecha;
+        uint256 monto;
+        string tipo; // 'ingreso', 'egreso', 'impuesto'
+        string descripcion;
+    }
+
+    struct Impuesto {
+        uint256 empresaId;
+        uint256 monto;
+        uint256 fechaPago;
+    }
+
+    struct Auditoria {
+        uint256 empresaId;
+        uint256 fecha;
+        string resultado;
+        string recomendacion;
+    }
+
+    mapping(uint256 => Empresa) public empresas;
+    mapping(uint256 => Transaccion[]) public transacciones;
+    mapping(uint256 => Impuesto[]) public impuestos;
+    mapping(uint256 => Auditoria[]) public auditorias;
+    
+    uint256 public empresaCount = 0;
+
+    event EmpresaRegistrada(uint256 empresaId, string nombre, string pais);
+    event TransaccionRegistrada(uint256 empresaId, uint256 monto, string tipo);
+    event ImpuestoPagado(uint256 empresaId, uint256 monto);
+    event AuditoriaRealizada(uint256 empresaId, string resultado);
+
+    function registrarEmpresa(string memory _nombre, string memory _rfc, string memory _pais, string memory _sector) public {
+        empresaCount++;
+        empresas[empresaCount] = Empresa(_nombre, _rfc, _pais, _sector, block.timestamp);
+        emit EmpresaRegistrada(empresaCount, _nombre, _pais);
+    }
+
+    function registrarTransaccion(uint256 _empresaId, uint256 _monto, string memory _tipo, string memory _descripcion) public {
+        transacciones[_empresaId].push(Transaccion(_empresaId, block.timestamp, _monto, _tipo, _descripcion));
+        emit TransaccionRegistrada(_empresaId, _monto, _tipo);
+    }
+
+    function pagarImpuesto(uint256 _empresaId, uint256 _monto) public {
+        impuestos[_empresaId].push(Impuesto(_empresaId, _monto, block.timestamp));
+        emit ImpuestoPagado(_empresaId, _monto);
+    }
+
+    function realizarAuditoria(uint256 _empresaId, string memory _resultado, string memory _recomendacion) public {
+        auditorias[_empresaId].push(Auditoria(_empresaId, block.timestamp, _resultado, _recomendacion));
+        emit AuditoriaRealizada(_empresaId, _resultado);
+    }
+}
