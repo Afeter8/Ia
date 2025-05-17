@@ -1,0 +1,52 @@
+// Contrato Inteligente de Ley Fundamental (Quantum-Solidity)
+pragma quantum >=0.8.0;
+
+contract InternationalLaw {
+    struct LegalPrinciple {
+        bytes32 hash;
+        address[] ratifyingNations;
+        uint256 timestamp;
+        bool isImmutable;
+    }
+    
+    mapping(string => LegalPrinciple) private principles;
+    address immutable UN_QuantumNode = 0x9fE3...;
+    
+    modifier onlyRatified() {
+        require(msg.sender == UN_QuantumNode || 
+               verifyRatification(msg.sender), "No autorizado");
+        _;
+    }
+    
+    function createPrinciple(
+        string memory _id,
+        bytes32 _quantumHash,
+        bool _immutable
+    ) external onlyRatified {
+        principles[_id] = LegalPrinciple(
+            _quantumHash,
+            new address[](0),
+            block.timestamp,
+            _immutable
+        );
+    }
+    
+    function ratifyPrinciple(string memory _id) external {
+        principles[_id].ratifyingNations.push(msg.sender);
+        emit PrincipleRatified(_id, msg.sender);
+    }
+    
+    function verifyCompliance(
+        string memory _id,
+        bytes32 _proofHash
+    ) public view returns (bool) {
+        return principles[_id].hash == _proofHash;
+    }
+    
+    // Autoejecución de sanciones mediante oráculos cuánticos
+    function enforceSanction(address _nonCompliant, string memory _lawId) external {
+        if (!verifyCompliance(_lawId, getBehaviorHash(_nonCompliant))) {
+            applySanctions(_nonCompliant);
+        }
+    }
+}
