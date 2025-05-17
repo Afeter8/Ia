@@ -1,0 +1,6 @@
+{
+  "mode": "defense",
+  "network": "tor",
+  "ip_rotation": true,
+  "auto_update": true
+}
