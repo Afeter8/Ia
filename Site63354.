@@ -1,0 +1,8 @@
+/Enigma-System
+│
+├── index.html       # Interfaz principal
+├── style.css        # Estilo visual y camuflaje
+├── main.js          # Defensa activa y bucle infinito
+├── enigma.py        # IA de defensa profunda (opcional)
+├── config.json      # Configuración de redes y defensa
+└── README.md        # Documentación
