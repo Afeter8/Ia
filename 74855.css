@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+  <title>StarTigo ENIGMA v2.0</title>
+  <style>
+    :root {
+      --hacker-green: #0f0;
+      --matrix-yellow: #ff0;
+    }
+
+    body {
+      background-color: #000;
+      color: var(--hacker-green);
+      font-family: 'Courier New', monospace;
+      margin: 0;
+      padding: 20px;
+      position: relative;
+    }
+
+    .glow {
+      text-shadow: 0 0 10px var(--hacker-green);
+    }
+
+    #mainframe {
+      border: 3px solid var(--hacker-green);
+      padding: 20px;
+      max-width: 800px;
+      margin: 20px auto;
+      box-shadow: 0 0 20px var(--hacker-green);
+    }
+
+    #console {
+      height: 500px;
+      overflow-y: scroll;
+      padding: 15px;
+      border: 1px solid var(--matrix-yellow);
+      background-color: rgba(0, 30, 0, 0.9);
+    }
+
+    .log-entry {
+      margin: 5px 0;
+      padding: 3px;
+      border-bottom: 1px dotted #093;
+    }
+
+    .status-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #001100;
+      padding: 5px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .crypto-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    button {
+      background: #002200;
+      color: var(--hacker-green);
+      border: 1px solid var(--hacker-green);
+      padding: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background: var(--hacker-green);
+      color: #000;
+    }
+
+    .alert {
+      color: #f00;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div id="mainframe">
+    <h1 class="glow">Ⓧ-StarTigo ENIGMA v2.0</h1>
+    <div class="alert">■ ALERTA: Sistema de encriptación cuántica activado ■</div>
+    
+    <div class="crypto-panel">
+      <div>
+        <h3>Consola de Operaciones</h3>
+        <div id="console"></div>
+      </div>
+      <div>
+        <h3>Panel de Control</h3>
+        <button id="toggleDefense">⏻ Iniciar Protocolo</button>
+        <div id="status"></div>
+        <h4>Cifrado Rápido</h4>
+        <textarea id="inputMessage" placeholder="Mensaje a cifrar..."></textarea>
+        <button onclick="cifrarMensaje()">Cifrar</button>
+        <div id="output"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <span>■ Estado: <span id="connectionStatus">Conectado</span></span>
+    <span>■ Encriptación: AES-256/Cuantica</span>
+    <span>■ Usuario: root</span>
+  </div>
+
+  <script>
+    const SECURITY_LEVELS = {
+      LOW: 1000,
+      MEDIUM: 3000,
+      HIGH: 5000
+    };
+
+    let isActive = false;
+    let currentInterval = SECURITY_LEVELS.HIGH;
+
+    async function generarHashCuántico() {
+      const time = Date.now();
+      const data = new TextEncoder().encode(`${time}${Math.random()}`);
+      const hashBuffer = await crypto.subtle.digest('SHA-512', data);
+      return Array.from(new Uint8Array(hashBuffer))
+        .map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    function actualizarConsola(mensaje, tipo = 'info') {
+      const entry = document.createElement('div');
+      entry.className = `log-entry ${tipo}`;
+      entry.innerHTML = `⌚ ${new Date().toLocaleTimeString()} | ${mensaje}`;
+      document.getElementById('console').appendChild(entry);
+    }
+
+    async function cicloDefensa() {
+      while (isActive) {
+        const hash = await generarHashCuántico();
+        actualizarConsola(`Nuevo hash cuántico generado: ${hash.substring(0, 32)}...`);
+        await new Promise(resolve => setTimeout(resolve, currentInterval));
+      }
+    }
+
+    async function cifrarMensaje() {
+      const mensaje = document.getElementById('inputMessage').value;
+      if (!mensaje) return;
+
+      const encoder = new TextEncoder();
+      const data = encoder.encode(mensaje);
+      const key = await crypto.subtle.generateKey(
+        { name: 'AES-GCM', length: 256 },
+        true,
+        ['encrypt', 'decrypt']
+      );
+      
+      const iv = crypto.getRandomValues(new Uint8Array(12));
+      const cifrado = await crypto.subtle.encrypt(
+        { name: 'AES-GCM', iv },
+        key,
+        data
+      );
+      
+      const resultado = {
+        iv: Array.from(iv),
+        cifrado: Array.from(new Uint8Array(cifrado)),
+        clave: await crypto.subtle.exportKey('jwk', key)
+      };
+      
+      document.getElementById('output').textContent = JSON.stringify(resultado, null, 2);
+      actualizarConsola('Mensaje cifrado con éxito', 'success');
+    }
+
+    document.getElementById('toggleDefense').addEventListener('click', () => {
+      isActive = !isActive;
+      this.textContent = isActive ? '⏻ Detener Protocolo' : '⏻ Iniciar Protocolo';
+      if (isActive) cicloDefensa();
+    });
+
+    // Simular conexión
+    setInterval(() => {
+      document.getElementById('connectionStatus').style.color = 
+        Math.random() > 0.1 ? '#0f0' : '#f00';
+    }, 5000);
+  </script>
+</body>
+</html>
