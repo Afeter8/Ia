@@ -1,0 +1,15 @@
+// Contrato de Salvaguardas Humanas
+contract EthicalCheck {
+    function prevent_unlawful_action(
+        address actor,
+        bytes32 intended_action
+    ) external view returns (bool permitted) {
+        bytes32 human_rights_hash = LegalRegistry.getCoreLaw("HR-2024");
+        (bool complies, ) = QuantumZKP.verify(
+            intended_action,
+            human_rights_hash,
+            actor
+        );
+        return complies;
+    }
+}
