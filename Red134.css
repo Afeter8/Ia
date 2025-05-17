@@ -1,0 +1,11 @@
+body {
+  background-color: #000;
+  color: #0f0;
+  font-family: monospace;
+  padding: 20px;
+}
+
+#console {
+  border: 1px solid #0f0;
+  padding: 10px;
+}
