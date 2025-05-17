@@ -1,0 +1,16 @@
+StarTigo ENIGMA v2.0
+├── frontend/ (Vue.js o React)
+│   ├── src/
+│   │   ├── assets/ (estilos, imágenes)
+│   │   ├── components/ (componentes reutilizables)
+│   │   ├── services/ (conexión API)
+│   │   └── views/ (vistas principales)
+├── backend/ (Node.js/Express)
+│   ├── src/
+│   │   ├── controllers/ (lógica de negocio)
+│   │   ├── middlewares/ (autenticación, validación)
+│   │   ├── models/ (esquemas DB)
+│   │   ├── routes/ (endpoints API)
+│   │   └── utils/ (herramientas criptográficas)
+├── database/ (MongoDB o PostgreSQL)
+└── config/ (variables de entorno y configuración)
