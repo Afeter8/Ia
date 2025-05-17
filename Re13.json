@@ -1,0 +1,9 @@
+{
+  "system": "ENIGMA",
+  "protection": true,
+  "loop": "eternal",
+  "auto_update": true,
+  "tor_enabled": true,
+  "ip_rotation": true,
+  "block_piracy": true
+}
