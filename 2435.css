@@ -1,0 +1,53 @@
+/* sistema-inmutable.css */
+/* Versión: 1.0 */
+/* Estado: Inmutable - No editable vía DOM */
+
+:root {
+  --color-principal: #0a0a0a;
+  --color-secundario: #ffffff;
+  --color-acento: #0f0;
+  --fuente-principal: 'Roboto', sans-serif;
+  --tamaño-fuente: 16px;
+  --bordes: 2px solid var(--color-acento);
+}
+
+/* Estilos globales */
+html, body {
+  background-color: var(--color-principal);
+  color: var(--color-secundario);
+  font-family: var(--fuente-principal);
+  font-size: var(--tamaño-fuente);
+  margin: 0;
+  padding: 0;
+  user-select: none; /* evita selección de texto */
+  pointer-events: none; /* desactiva la interacción humana */
+}
+
+/* Estructura visual controlada */
+.contenedor-inmutable {
+  border: var(--bordes);
+  padding: 1rem;
+  margin: 1rem;
+  background-color: #111;
+  box-shadow: 0 0 10px var(--color-acento);
+}
+
+/* Botones sin interacción */
+.boton-inmutable {
+  background-color: var(--color-acento);
+  color: var(--color-principal);
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Seguridad visual para estados */
+.estado-inmutable::before {
+  content: "🔒 Sistema Inmutable";
+  color: #0f0;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
