@@ -1,0 +1,46 @@
+{
+  "nombre": "IA_StarTigo",
+  "version": "1.0.0",
+  "descripcion": "Sistema de configuración inmutable para IA autónoma y defensiva.",
+  "autor": "Fernando Guadalupe Mendez Espinoza",
+  "entorno": {
+    "autonomia": true,
+    "intervencion_humana": false,
+    "modo": "seguro",
+    "actualizacion": "bloqueada"
+  },
+  "defensa": {
+    "activada": true,
+    "niveles": [
+      "perimetral",
+      "profunda",
+      "análisis_predictivo"
+    ],
+    "acciones": {
+      "bloquear_ip": true,
+      "auto_apagado": false,
+      "auto_reparacion": true
+    }
+  },
+  "verificacion": {
+    "firma_digital": "sha256:4d3bcd27fcb84a...f1a0d03b93458e",
+    "integridad_archivo": true,
+    "modificacion_permitida": false
+  },
+  "rutas_sistema": {
+    "carpeta_datos_biometricos": "/sistema/biometria/inmutable/",
+    "carpeta_defensa": "/sistema/defensa/ai/",
+    "carpeta_logs": "/logs/seguridad/"
+  },
+  "conexiones": {
+    "permitidas": [
+      "https://gemini.google.com",
+      "https://openai.com",
+      "https://api.startigo.ai"
+    ],
+    "bloqueadas": [
+      "http://*.inseguro.com",
+      "http://*.phishing.net"
+    ]
+  }
+}
