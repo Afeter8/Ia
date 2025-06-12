@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>StarTigo IA Autónoma</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body { font-family: Arial; background: #121212; color: #00ffea; padding: 2rem; }
+    #log { white-space: pre-line; background: #1e1e1e; padding: 1rem; border-radius: 10px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <h1>IA Autónoma StarTigo</h1>
+  <div id="log">Inicializando...</div>
+
+  <script>
+    const log = (msg) => {
+      document.getElementById('log').innerText += `\n[IA] ${msg}`;
+    };
+
+    // Sistema Autónomo (ciclo de análisis y respuesta)
+    const IA_CORE = {
+      memoria: [],
+      seguridad: true,
+      activo: true,
+
+      analizar(input) {
+        // Análisis básico de entrada
+        log(`Analizando entrada: "${input}"`);
+        if (input.toLowerCase().includes("peligro")) {
+          this.defender("posible amenaza detectada");
+        } else {
+          this.responder("Todo en orden.");
+        }
+      },
+
+      responder(msg) {
+        log(`Respuesta generada: ${msg}`);
+        // Puede incluir más lógicas como ejecutar acciones o enviar señales
+      },
+
+      defender(alerta) {
+        log(`⚠️ Alerta de seguridad: ${alerta}`);
+        // Aquí se ejecutaría una acción defensiva automática
+      },
+
+      cicloAutonomo() {
+        // Bucle infinito simulado para pruebas
+        setInterval(() => {
+          const datoSimulado = "monitorizando tráfico"; // simula info
+          this.analizar(datoSimulado);
+        }, 10000);
+      }
+    };
+
+    // Inicialización
+    (() => {
+      log("Sistema cargado, iniciando vigilancia autónoma...");
+      IA_CORE.cicloAutonomo();
+    })();
+  </script>
+</body>
+</html>
