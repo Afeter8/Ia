@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Star Tigo - Sistema Inmutable de Conexión</title>
+  <style>
+    /* Código CSS inmutable (puedes usar tu inmutable.css) */
+    body {
+      background-color: #000;
+      color: #0ff;
+      font-family: monospace;
+      margin: 0; padding: 20px;
+      user-select: none;
+    }
+    #status {
+      padding: 1em;
+      border: 2px solid #0ff;
+      margin-bottom: 1em;
+      animation: blink 3s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Star Tigo - Conexión Inmutable</h1>
+  <div id="status">Iniciando conexión...</div>
+  <div id="time">Hora: --:--:--</div>
+
+  <script>
+    // Función para obtener fecha y hora confiable vía API
+    async function obtenerHora() {
+      try {
+        const respuesta = await fetch('https://worldtimeapi.org/api/ip');
+        if (!respuesta.ok) throw new Error('Error API hora');
+        const data = await respuesta.json();
+        return new Date(data.utc_datetime);
+      } catch {
+        // Fallback a hora local si falla la API
+        return new Date();
+      }
+    }
+
+    // Estado de la conexión
+    const statusDiv = document.getElementById('status');
+    const timeDiv = document.getElementById('time');
+
+    async function verificarConexion() {
+      try {
+        const respuesta = await fetch('https://example.com/ping.txt', {cache: "no-store"});
+        if (respuesta.ok) {
+          statusDiv.textContent = 'Conectado a internet ✅';
+          return true;
+        }
+      } catch {
+        statusDiv.textContent = 'Sin conexión ❌, intentando reconectar...';
+      }
+      return false;
+    }
+
+    // Bucle eterno de conexión y actualización
+    async function bucleInmutable() {
+      while (true) {
+        const conectado = await verificarConexion();
+        if (conectado) {
+          const hora = await obtenerHora();
+          timeDiv.textContent = 'Hora (UTC): ' + hora.toISOString().slice(11,19);
+          // Aquí se pueden agregar llamadas para parches o actualizaciones
+          statusDiv.textContent = 'Sistema protegido y actualizado 🔒';
+        }
+        // Esperar 10 segundos antes del siguiente ciclo
+        await new Promise(res => setTimeout(res, 10000));
+      }
+    }
+
+    bucleInmutable();
+
+    // Protección básica para evitar manipulaciones (puede expandirse)
+    Object.freeze(window);
+    Object.freeze(document);
+  </script>
+</body>
+</html>
