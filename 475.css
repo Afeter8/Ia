@@ -1,0 +1,10 @@
+body {
+  background: #111;
+  color: #0f0;
+  font-family: monospace;
+  animation: rotar 10s infinite;
+}
+@keyframes rotar {
+  0% {filter: hue-rotate(0deg);}
+  100% {filter: hue-rotate(360deg);}
+}
